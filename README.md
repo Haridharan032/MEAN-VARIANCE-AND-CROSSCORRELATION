@@ -35,6 +35,54 @@ To write a program for **mean**, **variance**, and **cross-correlation** in Scil
 ## Program
 
 ```scilab
+// ---------- MEAN VALUE ----------
+function X = f(x)
+    z = 3 * (1 - x)^2;
+    X = x * z;
+endfunction
+
+a = 0;
+b = 1;
+EX = intg(a, b, f);
+
+function Y = c(y)
+    z = 3 * (1 - y)^2;
+    Y = y * z;
+endfunction
+
+EY = intg(a, b, c);
+
+disp("Mean of X = " + string(EX));
+disp("Mean of Y = " + string(EY));
+
+// ---------- VARIANCE ----------
+function X2 = g(x)
+    z = 3 * (1 - x)^2;
+    X2 = x^2 * z;
+endfunction
+EX2 = intg(a, b, g);
+vX2 = EX2 - (EX)^2;
+
+function Y2 = h(y)
+    z = 3 * (1 - y)^2;
+    Y2 = y^2 * z;
+endfunction
+EY2 = intg(a, b, h);
+vY2 = EY2 - (EY)^2;
+
+disp("Variance of X = " + string(vX2));
+disp("Variance of Y = " + string(vY2));
+
+// ---------- CROSS CORRELATION ----------
+x = input("Type in the reference sequence = ");
+y = input("Type in the second sequence = ");
+
+n1 = max(size(y)) - 1;
+n2 = max(size(x)) - 1;
+
+r = corr(x, y, n1);
+
+plot2d3('gnn', r);
 
 ```
 
