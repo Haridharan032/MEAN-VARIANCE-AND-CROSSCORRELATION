@@ -35,56 +35,7 @@ To write a program for **mean**, **variance**, and **cross-correlation** in Scil
 ## Program
 
 ```scilab
-// Clear workspace and console
-clear;
-clc;
-clear;
 
-// Mean Value function X=f(x)
-function z = f(x)
-    z = 3*(1-x)^3; // Marginal Probability Density Function
-endfunction
-
-a = 0;
-b = 1;
-EX = intg(a, b, f); // Mean value of X
-
-// Function Y=c(y)
-function z = c(y)
-    z = 3*(1-y)^3; // Marginal Probability Density Function
-endfunction
-
-EY = intg(a, b, c); // Mean value of Y
-
-disp(EX, "i) Mean of X =");
-disp(EY, "Mean of Y =");
-
-// Variance
-function z = g(x)
-    z = 3*(1-x)^3 * x^2; // X^2 * PDF
-endfunction
-
-EX2 = intg(a, b, g); // E[X^2]
-
-function z = h(y)
-    z = 3*(1-y)^3 * y^2; // Y^2 * PDF
-endfunction
-
-EY2 = intg(a, b, h); // E[Y^2]
-
-vX2 = EX2 - (EX)^2; // Variance of X
-vY2 = EY2 - (EY)^2; // Variance of Y
-
-disp(vX2, "ii) Variance of X");
-disp(vY2, "Variance of Y");
-
-// Cross-Correlation
-x = input("Type in the reference sequence = ");
-y = input("Type in the second sequence = ");
-n1 = max(size(y)) - 1;
-n2 = max(size(x)) - 1;
-r = corr(x, y, n1);
-plot2d3('gnn', r);
 ```
 
 --- 
@@ -105,15 +56,12 @@ plot2d3('gnn', r);
 
 ---
 
-<img width="610" height="420" alt="image" src="https://github.com/user-attachments/assets/92d08a66-c3d4-496a-8d39-1fc97f83530f" />
+
 
 ---
 
 ## MANUAL CALCULATION:
 
-<img width="560" height="780" alt="image" src="https://github.com/user-attachments/assets/aa459ff0-d4ab-42e9-9a47-9143f50fae8d "/>
-
-<img width="560" height="660" alt="image" src="https://github.com/user-attachments/assets/65ef0b65-fe6b-4eab-9e2b-3a075f7f11e9 "/>
 
 
 ---
