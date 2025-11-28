@@ -111,9 +111,7 @@ plot2d3('gnn', r);
 
 ## MANUAL CALCULATION:
 
-![WhatsApp Image 2025-11-11 at 20 41 55_fc4f70b8](https://github.com/user-attachments/assets/092efc8e-4fc4-4161-8fb2-12638ec339d4)
-
-![WhatsApp Image 2025-11-11 at 20 41 55_5bdc2f81](https://github.com/user-attachments/assets/a805b77f-4f09-4cbe-b8fa-4270d383ef2f)
+![20251128_200109](https://github.com/user-attachments/assets/ff7ecc4c-d67c-4ee0-a1ca-48e75045c6a8)
 
 
 ---
