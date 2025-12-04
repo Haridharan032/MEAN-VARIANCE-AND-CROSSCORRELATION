@@ -35,54 +35,57 @@ To write a program for **mean**, **variance**, and **cross-correlation** in Scil
 ## Program
 
 ```scilab
-// ---------- MEAN VALUE ----------
-function X = f(x)
-    z = 3 * (1 - x)^2;
-    X = x * z;
+clc;
+clear;
+
+function fx = pdfx(x)
+    fx = 3*(1-x)^2 * x;
 endfunction
 
-a = 0;
-b = 1;
-EX = intg(a, b, f);
-
-function Y = c(y)
-    z = 3 * (1 - y)^2;
-    Y = y * z;
+function fy = pdfy(x)
+    fy = 6*(1-x)^2 * x;
 endfunction
 
-EY = intg(a, b, c);
+EX = intg(0, 1, pdfx);
+EY = intg(0, 1, pdfy);
 
-disp("Mean of X = " + string(EX));
-disp("Mean of Y = " + string(EY));
+disp("1)Mean of X =", EX);
+disp("2)Mean of Y =", EY);
 
-// ---------- VARIANCE ----------
-function X2 = g(x)
-    z = 3 * (1 - x)^2;
-    X2 = x^2 * z;
+function p = f1(u)
+    p = u^2 * 3*(1-u)^2;
 endfunction
-EX2 = intg(a, b, g);
-vX2 = EX2 - (EX)^2;
 
-function Y2 = h(y)
-    z = 3 * (1 - y)^2;
-    Y2 = y^2 * z;
+function r = f2(v)
+    r = v^2 * 6*(1-v)^2;
 endfunction
-EY2 = intg(a, b, h);
-vY2 = EY2 - (EY)^2;
 
-disp("Variance of X = " + string(vX2));
-disp("Variance of Y = " + string(vY2));
+EX2 = intg(0, 1, f1);
+EY2 = intg(0, 1, f2);
 
-// ---------- CROSS CORRELATION ----------
-x = input("Type in the reference sequence = ");
-y = input("Type in the second sequence = ");
+vX2 = EX2 - EX^2;
+vY2 = EY2 - EY^2;
 
-n1 = max(size(y)) - 1;
-n2 = max(size(x)) - 1;
+disp("3)Variance of X =", vX2);
+disp("4)Variance of Y =", vY2);
 
-r = corr(x, y, n1);
+x = input("type in the reference sequence = ");
+y = input("type in the second sequence = ");
 
-plot2d3('gnn', r);
+S1 = max(size(y)) - 1;
+r = corr(x, y, S1);
+
+n = 0:length(r)-1;
+
+clf();
+plot2d3(n, r);
+xtitle("Cross-Correlation", "n", "r[n]");
+
+// Fix x-axis ticks to show 0,1,2,3,4,...
+ax = gca();
+ax.x_ticks = list(n, string(n));   // positions + labels
+
+xgrid();
 
 ```
 
@@ -100,18 +103,20 @@ plot2d3('gnn', r);
 
 ### Cross-Correlation Input Example
 - Reference sequence: `[1, 2, 3, 4, 5, 6, 7, 8]`  
-- Second sequence: `[2, 1, 3, 5, 6, 3, 5, 9]`
+- Second sequence: `[2, 1, 3, 4, 5, 7, 6, 8]`
 
 ---
 
-<img width="795" height="760" alt="image" src="https://github.com/user-attachments/assets/3a736c17-cdc9-4534-8d1b-81a5688ca336" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/326f8ca6-47f1-40bc-b7be-0544d418834f" />
 
 
 ---
 
 ## MANUAL CALCULATION:
 
-![20251128_200109](https://github.com/user-attachments/assets/ff7ecc4c-d67c-4ee0-a1ca-48e75045c6a8)
+![WhatsApp Image 2025-12-04 at 15 32 10_29198cbb](https://github.com/user-attachments/assets/c7b59a50-80e6-4b52-87b0-1b49dd71de45)
+
+![WhatsApp Image 2025-12-04 at 15 32 10_d34ed483](https://github.com/user-attachments/assets/795db698-d113-466a-9ba0-7f0d724afa77)
 
 
 ---
